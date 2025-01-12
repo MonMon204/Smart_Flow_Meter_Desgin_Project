@@ -1,17 +1,45 @@
+/* General Styling */
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
     background: linear-gradient(135deg, #4facfe, #00f2fe);
     color: #fff;
+    overflow: hidden; /* Prevent scrollbars from appearing due to clouds */
 }
+
+/* Navbar Styling */
+.navnav {
+    justify-content: flex-end;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    margin: 1rem;
+}
+
+.nav-pills {
+    justify-content: flex-end;
+    background: transparent;
+}
+
+.nav-pills .nav-link {
+    color: #4facfe;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: #4facfe;
+    color: #fff;
+    font-weight: bold;
+}
+
 
 .container {
     text-align: center;
     animation: fadeIn 1.5s ease-in-out;
+    position: relative;
+    z-index: 2;
+    top: 15vh;
+    color: #ffffff;
 }
 
 .title {
@@ -42,6 +70,44 @@ body {
     margin-top: 20px;
     font-size: 1rem;
     opacity: 0.8;
+}
+
+/* Top-Left Photo */
+.photo-container {
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+}
+
+.photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Clouds/Mist */
+.clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 100%;
+    background: url('../images/clouds.png') repeat-x;
+    animation: moveClouds 30s linear infinite;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Animations */
+@keyframes moveClouds {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-100%);
+    }
 }
 
 @keyframes fadeIn {
