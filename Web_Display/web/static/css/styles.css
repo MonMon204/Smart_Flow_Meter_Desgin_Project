@@ -10,7 +10,8 @@ body {
 
 /* Navbar Styling */
 .navnav {
-    justify-content: flex-end;
+    justify-content: center; /* Center the navbar for smaller screens */
+    flex-wrap: wrap;
     position: relative;
     z-index: 1;
     display: flex;
@@ -18,7 +19,8 @@ body {
 }
 
 .nav-pills {
-    justify-content: flex-end;
+    justify-content: center;
+    flex-wrap: wrap;
     background: transparent;
 }
 
@@ -32,7 +34,7 @@ body {
     font-weight: bold;
 }
 
-
+/* Container Styling */
 .container {
     text-align: center;
     animation: fadeIn 1.5s ease-in-out;
@@ -40,10 +42,11 @@ body {
     z-index: 2;
     top: 15vh;
     color: #ffffff;
+    padding: 0 1rem;
 }
 
 .title {
-    font-size: 2.5rem;
+    font-size: 2rem; /* Reduce font size for mobile */
     margin-bottom: 20px;
     animation: slideDown 1s ease-out;
 }
@@ -56,31 +59,31 @@ body {
 }
 
 .reading {
-    font-size: 5rem;
+    font-size: 4rem; /* Reduce font size for mobile */
     font-weight: bold;
     margin: 0;
 }
 
 .unit {
-    font-size: 1.5rem;
+    font-size: 1.25rem; /* Reduce font size for mobile */
     margin-top: 5px;
 }
 
 .footer {
     margin-top: 20px;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Reduce font size for mobile */
     opacity: 0.8;
 }
 
 /* Top-Left Photo */
 .photo-container {
     position: absolute;
-    top: 2rem;
-    left: 2rem;
+    top: 1rem;
+    left: 1rem; /* Adjust for smaller screens */
 }
 
 .photo {
-    width: 100px;
+    width: 100px; /* Smaller size for mobile */
     height: 100px;
     border-radius: 50%;
     border: 2px solid #fff;
@@ -92,10 +95,10 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 200%;
+    width: 90rem;
     height: 100%;
     background: url('../images/clouds.png') repeat-x;
-    animation: moveClouds 30s linear infinite;
+    animation: moveClouds 25s cubic-bezier(0, 0.3, 1, 0.72) infinite;
     opacity: 0.3;
     z-index: -1;
 }
@@ -103,7 +106,7 @@ body {
 /* Animations */
 @keyframes moveClouds {
     from {
-        transform: translateX(0);
+        transform: translateX(100%);
     }
     to {
         transform: translateX(-100%);
@@ -136,5 +139,66 @@ body {
     }
     50% {
         transform: scale(1.1);
+    }
+}
+
+/* Team Container */
+.team-container {
+    /* color: white; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    top: 1rem;
+    position: relative;
+    font-size: larger; /* Adjust font size for mobile */
+    padding: 0 1rem;
+}
+
+.team-member {
+    margin: 0.3rem 0; /* Add spacing between team members */
+    text-align: center;
+}
+
+/* Mobile Styles */
+@media (max-width: 800px) {
+    .navnav {
+        margin: 0.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .reading {
+        font-size: 3rem;
+    }
+
+    .unit {
+        font-size: 1rem;
+    }
+
+    .photo-container {
+        position: absolute;
+        top: 4rem;
+        left: 1rem; /* Adjust for smaller screens */
+    }
+
+    .photo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .container {
+        top: 15vh;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+
+    .team-container {
+        top: 5rem;
+        font-size: 0.9rem;
     }
 }
