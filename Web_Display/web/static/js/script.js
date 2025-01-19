@@ -20,7 +20,7 @@ function updateFlowRate() {
 //setInterval(updateFlowRate, 30000);
 
 
-let url = 'ws://192.168.1.3/ws/socket-server/';
+let url = 'ws://192.168.4.1/ws/socket-server/';
 let socket = new WebSocket(url);
 
 socket.onmessage = function(event) {
@@ -38,23 +38,60 @@ socket.onclose = function() {
 }
 
 function convertData(reading){
-    document.getElementById('unitSelector').addEventListener('change', function() {
-        const unit = this.value;
-        const readingElement = document.getElementById('massFlowRate');
+    const unit = document.getElementById('unitSelector').value;
 
-        switch (unit) {
-            case 'L/min':
-                reading = reading; // Assuming the base reading is in L/min
-                break;
-            case 'm³/h':
-                reading = reading / 1000 * 60; // Convert L/min to m³/h
-                break;
-            case 'gpm':
-                reading = reading / 3.785; // Convert L/min to gpm
-                break;
-        }
-        
-        document.getElementById("massFlowRate").textContent = reading.toFixed(3);
-        // readingElement.innerText = reading.toFixed(3);
-    });
+    const readingElement = document.getElementById('massFlowRate');
+
+    switch (unit) {
+        case 'Kg/s':
+            reading = reading; // Assuming the base reading is in Kg/s
+            break;
+        case 'Kg/min':
+            reading = reading * 60; 
+            break;
+        case 'Kg/h':
+            reading = reading * 60 * 60; 
+            break;
+        case 'lb/s':
+            reading = reading * 2.20462; 
+            break;
+        case 'lb/min':
+            reading = reading * 2.20462 * 60; 
+            break;
+        case 'lb/h':
+            reading = reading * 2.20462 * 60 * 60; 
+            break;
+    }
+
+    document.getElementById("massFlowRate").textContent = reading.toFixed(10);
 }
+
+
+
+document.getElementById('unitSelector').addEventListener('change', function() {
+    const unit = this.value;
+    const readingElement = document.getElementById('massFlowRate');
+    switch (unit) {
+        case 'Kg/s':
+            reading = reading; // Assuming the base reading is in Kg/s
+            break;
+        case 'Kg/min':
+            reading = reading * 60; 
+            break;
+        case 'Kg/h':
+            reading = reading * 60 * 60; 
+            break;
+        case 'lb/s':
+            reading = reading * 2.20462; 
+            break;
+        case 'lb/min':
+            reading = reading * 2.20462 * 60; 
+            break;
+        case 'lb/h':
+            reading = reading * 2.20462 * 60 * 60; 
+            break;
+    }
+  
+    document.getElementById("massFlowRate").textContent = reading.toFixed(10);
+
+});

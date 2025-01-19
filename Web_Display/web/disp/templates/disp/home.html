@@ -47,17 +47,27 @@
             <div class="container">
                 <h1 class="title">Flow Meter Dashboard</h1>
                 <div class="reading-container">
-                    <p class="reading" id="massFlowRate">0.00</p>
+                    <div class="flow-reading" id="massFlowRate">0.00</div>
+                    <div class="pressure">Pressure (Bar)</div>
+                    <div class="pressure-reading" id="pressureReading">0.00</div>
+                    <div class="temperature">Temperature (℃)</div>
+                    <div class="temperature-reading" id="temperatureReading">0.00</div>
                     <!-- <p class="unit">L/min</p> -->
                 <select id="unitSelector" class="form-select" aria-label="Unit selector" style="
-                width: auto;
+                width: 7rem;
                 background-color: transparent;
                 color: white;
                 border: transparent;
+                justify-self: center;
+                font-weight: bold;
                 ">
-                    <option value="L/min" selected style="color: black;">L/min</option>
-                    <option value="m³/h" style="color: black;">m³/h</option>
-                    <option value="gpm" style="color: black;">gpm</option>
+                    <option value="Kg/s" selected style="color: black;">Kg/s</option>
+                    <option value="Kg/min" style="color: black;">Kg/min</option>
+                    <option value="Kg/h" style="color: black;">Kg/h</option>
+                    <option value="g/s" style="color: black;">g/s</option>
+                    <option value="lb/h" style="color: black;">lb/h</option>
+                    <option value="lb/min" style="color: black;">lb/min</option>
+                    <option value="lb/s" style="color: black;">lb/s</option>
                 </select>
                 </div>
                 <div class="footer">
