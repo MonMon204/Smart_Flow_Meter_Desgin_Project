@@ -95,3 +95,37 @@ document.getElementById('unitSelector').addEventListener('change', function() {
     document.getElementById("massFlowRate").textContent = reading.toFixed(10);
 
 });
+
+
+const statusTextElement = document.getElementById('statusText');
+
+// WebSocket connection setup
+// const websocket = new WebSocket('ws://your-esp32-websocket-address');
+
+// Event: Connection opened
+socket.addEventListener('open', () => {
+    statusTextElement.textContent = 'Connected';
+    statusTextElement.style.color = 'green';
+});
+
+// Event: Connection closed
+socket.addEventListener('close', () => {
+    statusTextElement.textContent = 'Disconnected';
+    statusTextElement.style.color = 'red';
+});
+
+// Event: Connection error
+socket.addEventListener('error', () => {
+    statusTextElement.textContent = 'Error';
+    statusTextElement.style.color = 'orange';
+});
+
+// Optional: Reconnect logic
+setInterval(() => {
+    if (socket.readyState === WebSocket.CLOSED) {
+        statusTextElement.textContent = 'Reconnecting...';
+        statusTextElement.style.color = 'yellow';
+        socket = new WebSocket(url);
+    }
+}, 5000);
+

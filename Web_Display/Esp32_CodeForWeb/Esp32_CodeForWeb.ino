@@ -1,45 +1,47 @@
 #include <WiFi.h>
 #include <WebSocketsServer.h>
+#include <WebServer.h>
 
 // Constants
 const char* ssid = "MonMon's_ESP32_Access_Point"; // Replace with your desired AP name
 const char* password = "12345678";       // Replace with your desired password (minimum 8 characters)
+const char* redirect_url = "http://192.168.4.2"; // Replace with the Django server address
 
 // Globals
-WebSocketsServer webSocket = WebSocketsServer(80);
+WebSocketsServer webSocket = WebSocketsServer(81); // Use port 81 for WebSocket server
+WebServer server(80); // HTTP server on port 80
 
 // Called when receiving any WebSocket message
 void onWebSocketEvent(uint8_t num, WStype_t type, uint8_t * payload, size_t length) {
-  // Handle WebSocket events
   switch(type) {
-    // Client has disconnected
     case WStype_DISCONNECTED:
       Serial.printf("[%u] Disconnected!\n", num);
       break;
 
-    // New client has connected
     case WStype_CONNECTED: {
         IPAddress ip = webSocket.remoteIP(num);
         Serial.printf("[%u] Connection from ", num);
         Serial.println(ip.toString());
-        // Send a welcome message to the client
         webSocket.sendTXT(num, "Connected to flow meter server!");
       }
       break;
 
-    // Text message received (ignoring in this case)
     case WStype_TEXT:
       Serial.printf("[%u] Text: %s\n", num, payload);
       break;
 
-    // For other cases, do nothing
     default:
       break;
   }
 }
 
+// HTTP handler to redirect users to the Django server
+void handleRoot() {
+  server.sendHeader("Location", redirect_url, true); // HTTP redirect
+  server.send(302, "text/plain", ""); // Send a blank response
+}
+
 void setup() {
-  // Start Serial port
   Serial.begin(115200);
 
   // Configure the ESP32 as an access point
@@ -55,19 +57,22 @@ void setup() {
   // Start WebSocket server and assign callback
   webSocket.begin();
   webSocket.onEvent(onWebSocketEvent);
+
+  // Configure HTTP server to handle redirects
+  server.on("/", handleRoot); // Redirect on root path
+  server.begin();
+  Serial.println("Web Server Started");
 }
 
 void loop() {
   // Handle WebSocket connections
   webSocket.loop();
 
-  // Generate random flow meter data (for testing)
-  //float randomFlow = random(10, 100) + random(0, 100) / 100.0; // Random float between 10.00 and 99.99
+  // Handle HTTP requests
+  server.handleClient();
 
-  // Convert the flow data to a string
-  String flowData = "50.00";
-
-  // Broadcast the flow data to all connected clients
+  // Broadcast flow meter data to all connected WebSocket clients
+  String flowData = "50.00"; // Replace with real flow meter data
   webSocket.broadcastTXT(flowData);
 
   // Print to Serial Monitor for debugging
