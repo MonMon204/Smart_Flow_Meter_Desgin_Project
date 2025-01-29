@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-66j!xg_18!3kjq$$m&ht9+xa*wm4b2)4m%eqx&0-8o7b)8pz7m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', ' 192.168.1.7', '0.0.0.0', '127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['*']
+ALLOWED_HOSTS = ['*', ' 192.168.1.7', '0.0.0.0', '127.0.0.1', 'smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app/']
 
 # Application definition
 
