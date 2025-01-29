@@ -1,0 +1,262 @@
+/* General Styling */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    color: #fff;
+    overflow: hidden; /* Prevent scrollbars from appearing due to clouds */
+}
+
+/* Navbar Styling */
+.navnav {
+    justify-content: center; /* Center the navbar for smaller screens */
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+    display: flex;
+    margin: 1rem;
+}
+
+.nav-pills {
+    justify-content: center;
+    flex-wrap: wrap;
+    background: transparent;
+}
+
+.nav-pills .nav-link {
+    color: #19222b;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #4facfe;
+    color: #fff;
+    font-weight: bold;
+}
+
+/* Container Styling */
+.container {
+    text-align: center;
+    animation: fadeIn 1.5s ease-in-out;
+    position: relative;
+    z-index: 2;
+    top: 10vh;
+    color: #ffffff;
+    padding: 0 1rem;
+}
+
+.title {
+    font-size: 2rem; /* Reduce font size for mobile */
+    margin-bottom: 20px;
+    animation: slideDown 1s ease-out;
+}
+
+.reading-container {
+    /* display: flex;
+    flex-direction: column; */
+    align-items: center;
+    animation: pulse 4s infinite;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) 3fr 1fr 2fr;
+    grid-template-rows: repeat(2, 1fr) 3fr repeat(2, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+}
+
+.flow-reading {
+    font-size: 4rem; /* Reduce font size for mobile */
+    font-weight: bold;
+    /* margin: 0; */
+    grid-area: 2 / 3 / 4 / 5;
+}
+
+.pressure {
+    font-size: 1.25rem; /* Reduce font size for mobile */
+    font-weight: bold;
+    /* margin-top: 5px; */
+    grid-area: 1 / 5 / 2 / 6; 
+}
+
+.pressure-reading {
+    font-size: 1rem; /* Reduce font size for mobile */
+    /* margin-top: 5px; */
+    grid-area: 2 / 5 / 3 / 6;
+}
+
+.temperature {
+    font-size: 1.25rem; /* Reduce font size for mobile */
+    font-weight: bold;
+    /* margin-top: 5px; */
+    grid-area: 4 / 5 / 5 / 6; 
+}
+
+.temperature-reading {
+    font-size: 1rem; /* Reduce font size for mobile */
+    /* margin-top: 5px; */
+    grid-area: 5 / 5 / 6 / 6;
+}
+
+.form-select {
+    font-size: 1rem; /* Reduce font size for mobile */
+    grid-area: 5 / 3 / 6 / 5; 
+}
+
+.unit {
+    font-size: 1.25rem; /* Reduce font size for mobile */
+    margin-top: 5px;
+}
+
+.footer {
+    margin-top: 20px;
+    font-size: 0.9rem; /* Reduce font size for mobile */
+    opacity: 0.8;
+}
+
+/* Top-Left Photo */
+.photo-container {
+    position: absolute;
+    top: 1rem;
+    left: 1rem; /* Adjust for smaller screens */
+}
+
+.photo {
+    width: 100px; /* Smaller size for mobile */
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    animation: fadeIn 2s ease-in-out;
+}
+
+/* Clouds/Mist */
+.clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90rem;
+    height: 100%;
+    background: url('../images/clouds.png') repeat-x;
+    animation: moveClouds 25s cubic-bezier(0, 0.3, 1, 0.72) infinite;
+    opacity: 0.3;
+    z-index: -1;
+}
+
+/* Animations */
+@keyframes moveClouds {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Team Container */
+.team-container {
+    /* color: white; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    top: 1rem;
+    position: relative;
+    font-size: larger; /* Adjust font size for mobile */
+    padding: 0 1rem;
+}
+
+.team-member {
+    margin: 0.3rem 0; /* Add spacing between team members */
+    text-align: center;
+}
+
+/* Mobile Styles */
+@media (max-width: 800px) {
+    .navnav {
+        margin: 0.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .reading {
+        font-size: 3rem;
+    }
+
+    .unit {
+        font-size: 1rem;
+    }
+
+    .photo-container {
+        position: absolute;
+        top: 4rem;
+        left: 1rem; /* Adjust for smaller screens */
+    }
+
+    .photo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .container {
+        top: 15vh;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+    }
+
+    .team-container {
+        top: 5rem;
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Footer Bar Styling */
+.connection-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #19222b;
+    color: #fff;
+    /* text-align: center; */
+    /* padding: 0.5rem; */
+    padding-left: 1rem;
+    font-size: 1rem;
+    z-index: 10;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.connection-footer span {
+    font-weight: bold;
+}

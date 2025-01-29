@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-66j!xg_18!3kjq$$m&ht9+xa*wm4b2)4m%eqx&0-8o7b)8pz7m
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*', ' 192.168.1.7', '0.0.0.0', '127.0.0.1']
-
+ALLOWED_HOSTS = ['*', ' 192.168.1.7', '0.0.0.0', '127.0.0.1', 'smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app/']
+CSRF_TRUSTED_ORIGINS = ['smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app', 'https://smartflowmeterdesginproject-production.up.railway.app/']
 
 # Application definition
 
@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'disp',
+    'whitenoise.runserver_nostatic',
+
     
 ]
 
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'web.urls'
@@ -137,6 +140,9 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ['static/']
 
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
