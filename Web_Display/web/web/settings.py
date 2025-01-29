@@ -75,17 +75,17 @@ TEMPLATES = [
     },
 ]
 
-#WSGI_APPLICATION = 'web.wsgi.application'
+WSGI_APPLICATION = 'web.wsgi.application'
 
 
-CHANNEL_LAYERS = {
-    "default": {
-        "BACKEND": "channels_redis.core.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [("127.0.0.1", 6379)],
-        },
-    },
-}
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_redis.core.RedisChannelLayer",
+#         "CONFIG": {
+#             "hosts": [("127.0.0.1", 6379)],
+#         },
+#     },
+# }
 
 
 

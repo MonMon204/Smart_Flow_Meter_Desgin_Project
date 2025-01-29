@@ -31,6 +31,6 @@ def generate_wifi_qr(ssid, password, security_type="WPA", output_file="wifi_qr.p
     print(f"Wi-Fi QR code saved as {output_file}")
 
 # Example usage
-ssid = "Mina204"
-password = "A/n/K/l/M/c-27/8"
+ssid = "MonMon's_ESP32_Access_Point"
+password = "12345678"
 generate_wifi_qr(ssid, password)
